@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Password Generator</title>
+</head>
+<body>
+    <div class="background">
+        <div class="blur"></div>
+    </div>
+    
+    <div class="container">
+        <div class="box">
+            <div class="icon-header">
+                <div class="lock-icon">🔐</div>
+            </div>
+            
+            <h1>Password Generator</h1>
+            <p class="tagline">Create Strong & Secure Passwords</p>
+            
+            <div class="input-group">
+                <input type="password" id="passwordDisplay" placeholder="Your secure password" readonly>
+                <button id="toggleBtn" class="icon-btn toggle-btn">
+                    <span class="toggle-icon">👁️</span>
+                </button>
+                <button id="copyBtn" class="icon-btn copy-btn">
+                    <span class="copy-icon">📋</span>
+                </button>
+            </div>
+
+            <button id="generateBtn" class="generate-btn">
+                <span class="btn-icon">⚡</span>
+                <span class="btn-text">Generate Password</span>
+                <span class="btn-glow"></span>
+            </button>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
