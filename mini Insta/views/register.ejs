@@ -1,0 +1,245 @@
+<html>
+
+<head>
+  <title>Register - Blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .auth-wrapper {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .auth-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px 35px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .brand-logo {
+      font-family: 'Billabong', cursive;
+      font-size: 48px;
+      color: #262626;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .brand-tagline {
+      color: #8e8e8e;
+      font-size: 14px;
+      margin-bottom: 25px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .error {
+      background: #fff0f1;
+      color: #ed4956;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      border: 1px solid #ffd0d4;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    input {
+      padding: 12px 14px;
+      border: 1.5px solid #dbdbdb;
+      border-radius: 8px;
+      background: #fafafa;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #0095f6;
+      background: #fff;
+    }
+
+    input[type="file"] {
+      padding: 10px 14px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .avatar-label {
+      font-size: 13px;
+      color: #8e8e8e;
+      text-align: left;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    button {
+      background: linear-gradient(135deg, #0095f6, #0077e6);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: opacity 0.2s, transform 0.1s;
+      font-family: inherit;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      gap: 15px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #dbdbdb;
+    }
+
+    .divider span {
+      color: #8e8e8e;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .switch-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #262626;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .switch-box a {
+      color: #0095f6;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    .switch-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+
+    body.dark-mode .auth-card,
+    body.dark-mode .switch-box {
+      background: #1c1c1e;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    body.dark-mode .brand-logo {
+      color: #fff;
+    }
+
+    body.dark-mode .brand-tagline {
+      color: #a0a0a0;
+    }
+
+    body.dark-mode input {
+      background: #2c2c2e;
+      border-color: #3a3a3c;
+      color: #fff;
+    }
+
+    body.dark-mode input:focus {
+      border-color: #0095f6;
+      background: #1c1c1e;
+    }
+
+    body.dark-mode .switch-box {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .avatar-label {
+      color: #a0a0a0;
+    }
+
+    body.dark-mode .error {
+      background: #2c1a1c;
+      border-color: #5c2a2e;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h1 class="brand-logo">Blogs</h1>
+      <p class="brand-tagline">Sign up to see photos and videos from your friends.</p>
+
+      <% if (error && error.length) { %>
+        <p class="error">
+          <%= error %>
+        </p>
+        <% } %>
+
+          <form method="POST" action="/register" enctype="multipart/form-data">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <div class="avatar-label">Profile Picture (Optional)</div>
+            <input type="file" name="avatar" accept="image/*">
+            <button type="submit">Sign Up</button>
+          </form>
+
+          <div class="divider"><span>OR</span></div>
+    </div>
+
+    <div class="switch-box">
+      Have an account?<a href="/login">Log in</a>
+    </div>
+  </div>
+
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+</body>
+
+</html>
